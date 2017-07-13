@@ -4,6 +4,7 @@ import com.example.demo.domain.Book;
 import com.example.demo.domain.Repository.BookRepository;
 import com.example.demo.domain.Result;
 import com.example.demo.service.BookService;
+import com.example.demo.service.impl.BookServiceImp;
 import com.example.demo.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,7 @@ public class BookController {
     private BookRepository bookRepository;
 
     @Autowired
-    private BookService bookService;
+    private BookServiceImp bookServiceImp;
 
     /**
      * 查询所有书籍
@@ -47,9 +48,7 @@ public class BookController {
             return ResultUtil.error(0, bindingResult.getFieldError().getDefaultMessage());
         }
 
-        System.out.println(book.getName() + "11111111111111111111");
         return ResultUtil.success(bookRepository.save(book));
-
     }
 
     /**
